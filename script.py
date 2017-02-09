@@ -1,24 +1,15 @@
-import webbrowser, time
-print("Enter the filename\n")
-file_name = input()
-f = open(file_name,'r', encoding='utf-8')
-# os_type = platform.system()
-# # if os_type == 'Windows':
-# #     webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s").open("http://google.com")
-# # elif os_type == 'Linux':
+from bs4 import BeautifulSoup
+import webbrowser, time, urllib
+url = "https://github.com/HackathonHackers/personal-sites/blob/master/README.md"
+r = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(r, "html5lib")
+bs4obj= soup.select("#readme ul > li > a")
 sites = 0
 websites = []
-for line in f:
+for links in bs4obj:
     sites += 1
-    tmp = line.split()
-    link = tmp[-1]
-    fl = link.find("www")
-    if fl == -1:
-        fl = link.find("http")
-    if fl == -1:
-        link = "http://" + link
-    websites.append(link)
-print("No of lines in the file is: {0}\n".format(sites))
+    websites.append(links.get("href"))
+print("Total Number of Urls: {0}\n".format(sites))
 print("Now, keep entering the range of line number for each site you want to open (press e to exit): \n")
 while True:
     start = input()
