@@ -2,7 +2,7 @@
 ___
 A simple python script to open multiple websites as posted in [here](https://github.com/HackathonHackers/personal-sites).  
 #### Requirements
-python3 and beautifulsoup  
+Python3 and beautifulsoup  
 
 #### How to use this script  
 1. Clone the repository
